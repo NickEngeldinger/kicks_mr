@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Kick from './Kick.jsx';
 
-export default class Kick extends Component {
+export default class Kicks extends Component {
 	getKicks() {
 		return [
 			{ _id: 1, model: 'Jordan 4', colorway: 'white' },

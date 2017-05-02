@@ -1,1 +1,1 @@
-import '/imports/startup/client/main.jsx';
+import '/imports/startup/client/index.js';
