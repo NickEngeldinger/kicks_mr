@@ -11,7 +11,7 @@ export default class Kicks extends Component {
 
 	renderKicks() {
 		return this.getKicks().map((kick) => (
-			<Kick key={kick.__id} kick={kick} />
+			<Kick key={kick._id} kick={kick} />
 		));
 	}
 
