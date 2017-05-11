@@ -1,26 +1,12 @@
 import React, { Component } from 'react';
-import Kick from './Kick.jsx';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 
-export default class Kicks extends Component {
-	getKicks() {
-		return [
-			{ _id: 1, model: 'Jordan 4', colorway: 'white' },
-			{ _id: 2, model: 'Jordan 3 Pit Crew', colorway: 'black' }
-		];
-	}
-
-	renderKicks() {
-		return this.getKicks().map((kick) => (
-			<Kick key={kick._id} kick={kick} />
-		));
-	}
-
+export default class Home extends Component {
 	render() {
-		return (
-			<div className="container">
-				<ul>
-						{this.renderKicks()}
-				</ul>
+		return(
+			<div>
+				<h1>Ducks Kicks</h1>
+				<Link to="/kicks">All Kicks</Link>
 			</div>
 		)
 	}
