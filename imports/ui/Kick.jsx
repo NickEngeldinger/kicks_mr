@@ -10,4 +10,4 @@ export default class Kick extends Component {
 
 Kick.propTypes = {
 	kick: PropTypes.object.isRequired
-}
+} 

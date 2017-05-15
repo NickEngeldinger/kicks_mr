@@ -4,4 +4,4 @@ import { renderRoutes } from './routes.js';
 
 Meteor.startup(() => {
 	render(renderRoutes(), document.getElementById('root'));
-})
+});

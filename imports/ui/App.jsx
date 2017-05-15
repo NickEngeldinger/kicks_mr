@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Link} from 'react-router-dom';
+
+import { Nav } from './Nav.jsx';
 
 export default class App extends Component {
 	render() {
@@ -9,11 +10,7 @@ export default class App extends Component {
 					<h1>Ducks Kicks</h1>
 					<img className="logo" src="logo.png" />
 				</header>
-				<aside className="primary-aside">
-					<Link to="/">Home</Link>
-					<Link to="/kicks">All Kicks</Link>
-					<Link to="/about">About</Link>
-				</aside>
+				<Nav />
 				{this.props.children}
 			</div>
 		)
