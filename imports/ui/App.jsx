@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { RouteTransition } from 'react-router-transition';
 
 import { Nav } from './Nav.jsx';
 
@@ -11,7 +12,14 @@ export default class App extends Component {
 					<img className="logo" src="logo.png" />
 				</header>
 				<Nav />
-				{this.props.children}
+				<RouteTransition
+					pathname={location.pathname}
+					atEnter={{ opacity: 0 }}
+					atLeave={{ opacity: 1 }}
+					atActive={{ opacity: 1 }}
+				>
+					{this.props.children}
+				</RouteTransition>
 			</div>
 		)
 	}
