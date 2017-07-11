@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { RouteTransition } from 'react-router-transition';
 
-
 import { Nav } from './Nav.jsx';
 
 export default class App extends Component {

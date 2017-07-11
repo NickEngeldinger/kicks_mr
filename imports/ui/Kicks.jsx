@@ -7,7 +7,7 @@ import { Kicks } from '../api/kicks.js';
 
 import Kick from './Kick.jsx';
 
-class KicksApp extends Component {
+class KicksList extends Component {
 
 	handleSubmit(event) {
 		event.preventDefault();
@@ -34,21 +34,6 @@ class KicksApp extends Component {
 	render() {
 		return (
 			<div className="container">
-
-				<form className="new-kick" onSubmit={this.handleSubmit.bind(this)} >
-					<input
-						type="text"
-						ref="modelInput"
-						placeholder="Model of sneaker"
-					/>
-					<input
-						type="text"
-						ref="colorwayInput"
-						placeholder="Colorway of sneaker"
-					/>
-					<button type="submit">Add Sneaker</button>
-				</form>	
-
 				<ul>
 						{this.renderKicks()}
 				</ul>
@@ -57,12 +42,12 @@ class KicksApp extends Component {
 	}
 }
 
-KicksApp.propTypes = {
-	kicks: PropTypes.array.idRequired
+KicksList.propTypes = {
+	kicks: PropTypes.array.isRequired
 };
 
 export default createContainer(() => {
 	return {
 		kicks: Kicks.find({}).fetch()
 	}
-}, KicksApp);
+}, KicksList);
