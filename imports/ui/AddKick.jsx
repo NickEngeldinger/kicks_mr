@@ -1,9 +1,24 @@
 import React, { Component, PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+
+import { Kicks } from '../api/kicks.js';
 
 export default class AddKick extends Component {
 	handleSubmit(event) {
-		
+		event.preventDefault();
+
+		const model = ReactDOM.findDOMNode(this.refs.modelInput).value.trim();
+		const colorway = ReactDOM.findDOMNode(this.refs.colorwayInput).value.trim();
+
+		Kicks.insert({
+			model,
+			colorway,
+			createdAt: new Date()
+		});
+
+		ReactDOM.findDOMNode(this.refs.modelInput).value = '';
+		ReactDOM.findDOMNode(this.refs.colorwayInput).value = '';
 	}
 
 	render() {
