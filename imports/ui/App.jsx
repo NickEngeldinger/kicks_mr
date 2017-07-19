@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { RouteTransition } from 'react-router-transition';
 
 import { Nav } from './Nav.jsx';
+import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
 export default class App extends Component {
 	render() {
@@ -11,7 +12,11 @@ export default class App extends Component {
 					<h1>Ducks Kicks</h1>
 					<img className="logo" src="logo.png" />
 				</header>
+
+				<AccountsUIWrapper />
+				
 				<Nav />
+				
 				<RouteTransition
 					pathname={location.pathname}
 					atEnter={{ opacity: 0 }}

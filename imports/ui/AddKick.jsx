@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, NavLink } from 'react-router-dom';
+import { Meteor } from 'meteor/meteor';
 
 import { Kicks } from '../api/kicks.js';
 
