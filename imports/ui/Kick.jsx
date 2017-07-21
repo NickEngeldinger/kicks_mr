@@ -13,11 +13,11 @@ export default class Kick extends Component {
 			<li>
 				<button className="delete" onClick={this.deleteThisKick.bind(this)}>&times;</button>
 				{ this.props.kick.model } - { this.props.kick.colorway }
-			</li>
+			</li> 
 		);
 	}
 }
 
 Kick.propTypes = {
-	kick: PropTypes.object.isRequired
+	kick: PropTypes.object.isRequired,
 } 

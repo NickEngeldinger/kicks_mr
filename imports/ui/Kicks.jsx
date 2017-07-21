@@ -31,6 +31,6 @@ KicksList.propTypes = {
 
 export default createContainer(() => {
 	return {
-		kicks: Kicks.find({}).fetch()
+		kicks: Kicks.find({}).fetch(),
 	}
 }, KicksList);
