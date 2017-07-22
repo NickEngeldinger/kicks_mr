@@ -13,8 +13,6 @@ export default class App extends Component {
 					<img className="logo" src="logo.png" />
 				</header>
 
-				<AccountsUIWrapper />
-				
 				<Nav />
 				
 				<RouteTransition

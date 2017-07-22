@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom';
 import { withRouter } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 
-//import { isLoggedIn } from '../startup/authentication.js';
 import { Kicks } from '../api/kicks.js';
 
 export default class AddKick extends Component {
-	componentWillMount() {
-		if (Meteor.userId() === null) {
+	/*componentWillMount() {
+		if (!Meteor.userId()) {
 			this.props.history.push('/');
 		}
-	}
+	}*/
 
 	handleSubmit(event) {
 		event.preventDefault();
