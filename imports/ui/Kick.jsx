@@ -5,7 +5,7 @@ import { Kicks } from '../api/kicks.js';
 export default class Kick extends Component {
 	
 	deleteThisKick() {
-		Kicks.remove(this.props.kick._id);
+		Meteor.call('kicks.remove', this.props.kick._id)
 	}
 
 	render() {

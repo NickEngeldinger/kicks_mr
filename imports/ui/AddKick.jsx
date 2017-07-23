@@ -12,11 +12,7 @@ export default class AddKick extends Component {
 		const model = ReactDOM.findDOMNode(this.refs.modelInput).value.trim();
 		const colorway = ReactDOM.findDOMNode(this.refs.colorwayInput).value.trim();
 
-		Kicks.insert({
-			model,
-			colorway,
-			createdAt: new Date()
-		});
+		Meteor.call('kicks.insert', model, colorway);
 
 		ReactDOM.findDOMNode(this.refs.modelInput).value = '';
 		ReactDOM.findDOMNode(this.refs.colorwayInput).value = '';
