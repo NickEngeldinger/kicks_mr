@@ -11,13 +11,17 @@ class Admin extends Component {
 				<AccountsUIWrapper />
 
 				{ this.props.currentUser ?
-				<div>
-					<h2>Admin</h2>
+					<div>
+						<h2>Admin</h2>
 
-					<AddKick />
+						<AddKick />
 
-				</div>
-				: ''}
+					</div>
+					: 
+					<div>
+						<h3>Please Login</h3>
+					</div>
+				}
 			</div>
 		);
 	}

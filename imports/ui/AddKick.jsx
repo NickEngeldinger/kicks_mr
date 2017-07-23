@@ -6,12 +6,6 @@ import { Meteor } from 'meteor/meteor';
 import { Kicks } from '../api/kicks.js';
 
 export default class AddKick extends Component {
-	/*componentWillMount() {
-		if (!Meteor.userId()) {
-			this.props.history.push('/');
-		}
-	}*/
-
 	handleSubmit(event) {
 		event.preventDefault();
 
