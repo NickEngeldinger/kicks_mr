@@ -5,9 +5,10 @@ import { check } from 'meteor/check';
 export const Kicks = new Mongo.Collection('kicks');
 
 Meteor.methods({
-	'kicks.insert'(model, colorway) {
+	'kicks.insert'(model, colorway, category){
 		check(model, String);
 		check(colorway, String);
+		check(category, String);
 
 		if (! Meteor.userId()) {
 			throw new Meteor.error('not-authorized');
@@ -16,6 +17,7 @@ Meteor.methods({
 		Kicks.insert({
 			model,
 			colorway,
+			category,
 			createdAt: new Date()
 		});
 	},
