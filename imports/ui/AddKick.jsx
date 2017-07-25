@@ -6,9 +6,10 @@ import { Meteor } from 'meteor/meteor';
 import { Kicks } from '../api/kicks.js';
 
 export default class AddKick extends Component {
+	//TODO convert uncontrolled components for text inputs to controlled components like the select
 	constructor(props) {
 		super(props);
-		this.state = {value : ''};
+		this.state = {selectCategory : ''};
 
 		this.handleChange = this.handleChange.bind(this);
 	}
@@ -18,22 +19,24 @@ export default class AddKick extends Component {
 
 		const model = ReactDOM.findDOMNode(this.refs.modelInput).value.trim();
 		const colorway = ReactDOM.findDOMNode(this.refs.colorwayInput).value.trim();
-		const category = this.state.value;
+		const category = this.state.selectCategory;
 
 		Meteor.call('kicks.insert', model, colorway, category);
 
 		ReactDOM.findDOMNode(this.refs.modelInput).value = '';
 		ReactDOM.findDOMNode(this.refs.colorwayInput).value = '';
+
+		this.setState({selectCategory: ''})
 	}
 
 	handleChange(event) {
-		this.setState({value: event.target.value});
+		this.setState({selectCategory: event.target.value});
 	}
 
 	render() {
 		return (
 			<form className="new-kick" onSubmit={this.handleSubmit.bind(this)} >
-				<select value={this.state.value} onChange={this.handleChange}>
+				<select value={this.state.selectCategory} onChange={this.handleChange}>
 					<option value="">Select a category</option>
 					<option value="retro">Jordan Retro</option>
 					<option value="jordan">Jordan</option>

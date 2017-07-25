@@ -30,6 +30,7 @@ KicksList.propTypes = {
 };
 
 export default createContainer(() => {
+	Meteor.subscribe('kicks');
 	return {
 		kicks: Kicks.find({}).fetch(),
 	}

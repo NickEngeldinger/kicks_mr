@@ -4,6 +4,12 @@ import { check } from 'meteor/check';
 
 export const Kicks = new Mongo.Collection('kicks');
 
+if (Meteor.isServer) {
+	Meteor.publish('kicks', function kicksPublication() {
+		return Kicks.find();
+	});
+}
+
 Meteor.methods({
 	'kicks.insert'(model, colorway, category){
 		check(model, String);
