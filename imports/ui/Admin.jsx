@@ -3,6 +3,7 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import AddKick from './AddKick.jsx';
+import SelectKick from './SelectKick.jsx';
 
 class Admin extends Component {
 	render() {
@@ -13,6 +14,12 @@ class Admin extends Component {
 				{ this.props.currentUser ?
 					<div>
 						<h2>Admin</h2>
+
+						<h3>Edit a kick</h3>
+
+						<SelectKick />
+
+						<h3>Add a new kick</h3>
 
 						<AddKick />
 
