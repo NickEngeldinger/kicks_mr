@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { FilesCollection } from 'meteor/ostrio:files';
 
 export const Images = new FilesCollection({
+	storagePath: 'public/img',
 	collectionName: 'Images',
 	allowClientCode: false,
 	onBeforeUpload(file) {
@@ -14,12 +15,8 @@ export const Images = new FilesCollection({
 	}
 });
 
-if (Meteor.isClient) {
-	Meteor.subscribe('files.images.all');
-}
-
 if (Meteor.isServer) {
-	Meteor.publish('files.images.all', () => {
+	Meteor.publish('files.images.all', function imagesPublication() {
 		return Images.find().cursor;
 	});
 }

@@ -7,6 +7,7 @@ import Kicks from '../../../imports/ui/Kicks.jsx';
 import Admin from '../../../imports/ui/Admin.jsx';
 import FileUpload from '../../../imports/ui/FileUpload.jsx';
 import FileIndividualFile from '../../../imports/ui/FileIndividualFile.jsx';
+import Imgs from '../../../imports/ui/Imgs.jsx';
 import NotFound from '../../../imports/ui/NotFound.jsx';
 
 export const renderRoutes = () => (
@@ -17,9 +18,13 @@ export const renderRoutes = () => (
 	  		<Route exact path="/kicks" component={Kicks} />
 	  		<Route exact path="/admin" component={Admin} />
 	  		<Route exact path="/upload" component={FileUpload} />
+	  		<Route exact path="/images" component={Imgs} />
 	  		<Route exact path="/single-file" component={FileIndividualFile} />
-	  		<Route path="*" component={NotFound} />
   		</Switch>
   	</App>
 	</BrowserRouter>
 );
+
+//Deal with 404s while allowing public static assets to work
+
+//<Route path="*" component={NotFound} />

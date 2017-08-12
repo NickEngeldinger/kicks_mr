@@ -1,6 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import { Kicks } from '../api/kicks.js';
 
@@ -18,7 +17,7 @@ class KicksList extends Component {
 		return (
 			<div className="container">
 				<ul>
-						{this.renderKicks()}
+					{this.renderKicks()}
 				</ul>
 			</div>
 		)
@@ -32,6 +31,6 @@ KicksList.propTypes = {
 export default createContainer(() => {
 	Meteor.subscribe('kicks');
 	return {
-		kicks: Kicks.find({}).fetch(),
+		kicks: Kicks.find({}).fetch()
 	}
 }, KicksList);

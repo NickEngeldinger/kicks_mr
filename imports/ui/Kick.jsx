@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 
-import { Kicks } from '../api/kicks.js';
-
 export default class Kick extends Component {
 	
 	deleteThisKick() {

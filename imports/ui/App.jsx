@@ -10,7 +10,7 @@ export default class App extends Component {
 			<div className="app">
 				<header className="primary-header">
 					<h1>Ducks Kicks</h1>
-					<img className="logo" src="logo.png" />
+					<img className="logo" src="img/wings.jpg" width="150px" />
 				</header>
 
 				<Nav />

@@ -17,6 +17,8 @@ class FileUpload extends Component {
 			progress: 0,
 			inProgress: false
 		}
+	
+		//this.handleClick = this.handleClick.bind(this);
 	}
 
 	//getMeteorData() {
@@ -29,7 +31,8 @@ class FileUpload extends Component {
 		//};
 	//}
 
-	uploadIt(event) {
+	handleChange(event) {
+		'use strict';
 		event.preventDefault();
 
 		let self = this;
@@ -49,6 +52,7 @@ class FileUpload extends Component {
 					allowWebWorkers: true
 				}, false);
 
+				//TODO fix this when adding progress bar
 				//self.setState({
 				//	uploading: uploadInstance,
 				//	inProgress: true
@@ -111,23 +115,25 @@ class FileUpload extends Component {
 				</div>
 			});*/}
 
-			return <div>
-				<p>Upload New File:</p>
-				<input
-					type="file"
-					id="fileInput"
-					disabled={this.state.inProgress}
-					ref="fileInput"
-					onChange={this.uploadIt}
-				/>
-				<hr />
+			return (
 				<div>
-					{this.showUploads()}
+					<p>Upload New File:</p>
+					<input
+						type="file"
+						id="fileInput"
+						disabled={this.state.inProgress}
+						ref="fileInput"
+						onChange={this.handleChange}
+					/>
+					<hr />
+					<div>
+						{this.showUploads()}
+					</div>
+
+					{/*{display}*/}
+
 				</div>
-
-				{/*{display}*/}
-
-			</div>
+			);
 		}
 		else return <div>Docs ready failed :(</div>
 	}
