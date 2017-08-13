@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { BrowserRouter, Route, NavLink} from 'react-router-dom';
 
 export default class Kick extends Component {
 	
@@ -11,7 +12,7 @@ export default class Kick extends Component {
 			<li>
 				<button className="delete" onClick={this.deleteThisKick.bind(this)}>&times;</button>
 				{ this.props.kick.model } - { this.props.kick.colorway }
-				<a href={`/kick/${this.props.kick._id}`}>View</a>
+				<NavLink to={`/kick/${this.props.kick._id}`}>View</NavLink>
 			</li> 
 		);
 	}
