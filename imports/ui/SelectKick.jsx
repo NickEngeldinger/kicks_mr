@@ -26,7 +26,7 @@ class SelectKicks extends Component {
 		return (
 			<div className="container">
 				<select value={this.props.selectedKick} onChange={this.handleChange}>
-					<option>Select a kick</option>
+					<option value="">Select a kick</option>
 					{this.renderSelect()}
 				</select>
 			</div>

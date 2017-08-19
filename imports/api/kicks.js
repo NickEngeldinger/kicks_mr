@@ -31,6 +31,22 @@ Meteor.methods({
 	'kicks.remove'(kickId) {
 		check(kickId, String);
 
+		if (! Meteor.userId()) {
+			throw new Meteor.error('not-authorized');
+		}
+
 		Kicks.remove(kickId);
+	},
+
+	'kicks.update'(kickId, model, colorway) {
+		check(kickId, String);
+		check(model, String);
+		check(colorway, String);
+
+		if (! Meteor.userId()) {
+			throw new Meteor.error('not-authorized');
+		}
+
+		Kicks.update({_id: kickId}, {$set : {model : model, colorway: colorway}});
 	}
 });

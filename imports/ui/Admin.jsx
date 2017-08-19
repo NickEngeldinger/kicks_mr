@@ -5,12 +5,13 @@ import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 import AddKick from './AddKick.jsx';
 import SelectKick from './SelectKick.jsx';
 import DeleteKick from './DeleteKick.jsx';
+import EditKick from './EditKick.jsx';
 
 class Admin extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {selectedKick: ''};
+		this.state = {selectedKick: '', kick: {model: '', colorway: ''}};
 
 		this.handleSelectChange = this.handleSelectChange.bind(this);
 	}
@@ -21,6 +22,7 @@ class Admin extends Component {
 
 	render() {
 		const selectedKick = this.state.selectedKick;
+		const kick = this.state.kick;
 
 		return (
 			<div>
@@ -30,15 +32,17 @@ class Admin extends Component {
 					<div>
 						<h2>Admin</h2>
 
-						<h3>Edit or delete a kick</h3>
-
 						<SelectKick
 							selectedKick={selectedKick} 
 							onSelectChange={this.handleSelectChange} 
 						/>
 
-						<DeleteKick selectedKick={selectedKick} />
+						<EditKick selectedKick={selectedKick} />
 
+						{ selectedKick !== '' ? 
+							<DeleteKick selectedKick={selectedKick} kick={kick} />
+							: null
+						}
 						<h3>Add a new kick</h3>
 
 						<AddKick />
