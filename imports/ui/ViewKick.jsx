@@ -35,6 +35,6 @@ ViewKick.propTypes = {
 export default createContainer(({match}) => {
 	Meteor.subscribe('kicks');
 	return {
-		kick: Kicks.findOne({_id: match.params._id})
+		kick: Kicks.findOne({stub: match.params.stub})
 	}
 }, ViewKick);

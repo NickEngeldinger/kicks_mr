@@ -16,7 +16,7 @@ export const renderRoutes = () => (
 			<Switch>
 	  		<Route exact path="/" component={Home} />
 	  		<Route exact path="/kicks" component={Kicks} />
-	  		<Route exact path="/kick/:_id" component={ViewKick} />
+	  		<Route exact path="/kick/:stub" component={ViewKick} />
 	  		<Route exact path="/admin" component={Admin} />
 	  		<Route exact path="/upload" component={FileUpload} />
 	  		<Route exact path="/images" component={Imgs} />

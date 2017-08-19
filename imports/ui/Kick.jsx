@@ -12,7 +12,7 @@ export default class Kick extends Component {
 			<li>
 				<button className="delete" onClick={this.deleteThisKick.bind(this)}>&times;</button>
 				{ this.props.kick.model } - { this.props.kick.colorway }
-				<NavLink to={`/kick/${this.props.kick._id}`}>View</NavLink>
+				<NavLink to={`/kick/${this.props.kick.stub}`}>View</NavLink>
 			</li> 
 		);
 	}

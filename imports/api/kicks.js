@@ -11,10 +11,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'kicks.insert'(model, colorway, category){
+	'kicks.insert'(model, colorway, category, stub){
 		check(model, String);
 		check(colorway, String);
 		check(category, String);
+		check(stub, String);
 
 		if (! Meteor.userId()) {
 			throw new Meteor.error('not-authorized');
@@ -24,6 +25,7 @@ Meteor.methods({
 			model,
 			colorway,
 			category,
+			stub,
 			createdAt: new Date()
 		});
 	},

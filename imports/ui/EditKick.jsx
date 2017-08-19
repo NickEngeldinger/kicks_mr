@@ -16,7 +16,8 @@ class EditKick extends Component {
 
 		const model = ReactDOM.findDOMNode(this.refs.kickModel).value.trim();
 		const colorway = ReactDOM.findDOMNode(this.refs.kickColorway).value.trim();
-		
+		//NEED TO UPDATE THE STUB ALSO
+
 		Meteor.call('kicks.update', this.props.selectedKick, model, colorway);
 	}
 
