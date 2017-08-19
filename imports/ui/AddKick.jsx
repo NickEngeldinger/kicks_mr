@@ -20,9 +20,9 @@ export default class AddKick extends Component {
 		const model = ReactDOM.findDOMNode(this.refs.modelInput).value.trim();
 		const colorway = ReactDOM.findDOMNode(this.refs.colorwayInput).value.trim();
 		const category = this.state.selectCategory;
-		const stub = `${model.split(' ').join('-')}-${colorway.split(' ').join('-')}`;
+		const slug = `${model.split(' ').join('-')}-${colorway.split(' ').join('-')}`;
 
-		Meteor.call('kicks.insert', model, colorway, category, stub);
+		Meteor.call('kicks.insert', model, colorway, category, slug);
 
 		ReactDOM.findDOMNode(this.refs.modelInput).value = '';
 		ReactDOM.findDOMNode(this.refs.colorwayInput).value = '';

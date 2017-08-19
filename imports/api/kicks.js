@@ -11,11 +11,11 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-	'kicks.insert'(model, colorway, category, stub){
+	'kicks.insert'(model, colorway, category, slug){
 		check(model, String);
 		check(colorway, String);
 		check(category, String);
-		check(stub, String);
+		check(slug, String);
 
 		if (! Meteor.userId()) {
 			throw new Meteor.error('not-authorized');
@@ -25,7 +25,7 @@ Meteor.methods({
 			model,
 			colorway,
 			category,
-			stub,
+			slug,
 			createdAt: new Date()
 		});
 	},
@@ -40,15 +40,23 @@ Meteor.methods({
 		Kicks.remove(kickId);
 	},
 
-	'kicks.update'(kickId, model, colorway) {
+	'kicks.update'(kickId, model, colorway, slug) {
 		check(kickId, String);
 		check(model, String);
 		check(colorway, String);
+		check(slug, String);
 
 		if (! Meteor.userId()) {
 			throw new Meteor.error('not-authorized');
 		}
 
-		Kicks.update({_id: kickId}, {$set : {model : model, colorway: colorway}});
+		Kicks.update(
+			{_id : kickId}, 
+			{$set : {
+				model : model, 
+				colorway: colorway,
+				slug: slug
+				}
+			});
 	}
 });
