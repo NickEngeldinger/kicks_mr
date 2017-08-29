@@ -6,23 +6,39 @@ import AddKick from './AddKick.jsx';
 import SelectKick from './SelectKick.jsx';
 import DeleteKick from './DeleteKick.jsx';
 import EditKick from './EditKick.jsx';
+import FileUpload from './FileUpload.jsx';
 
 class Admin extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {selectedKick: '', kick: {model: '', colorway: ''}};
+		this.state = {
+			selectedKick: '', 
+			kick: {model: '', colorway: ''},
+			imageId: '',
+			imageExt: ''
+		};
 
 		this.handleSelectChange = this.handleSelectChange.bind(this);
+		this.handleImageUpload = this.handleImageUpload.bind(this);
 	}
 
 	handleSelectChange(value) {
 		this.setState({selectedKick: value});
 	}
 
+	handleImageUpload(id, ext) {
+		this.setState({
+			imageId: id,
+			imageExt: ext
+		});
+	}
+
 	render() {
 		const selectedKick = this.state.selectedKick;
 		const kick = this.state.kick;
+		const imageId = this.state.imageId;
+		const imageExt = this.state.imageExt;
 
 		return (
 			<div>
@@ -45,7 +61,15 @@ class Admin extends Component {
 						}
 						<h3>Add a new kick</h3>
 
-						<AddKick />
+						<AddKick 
+							imageId={imageId}
+							imageExt={imageExt}
+						/>
+
+						<FileUpload
+							imageId={imageId}
+							onImageUpload={this.handleImageUpload}
+						/>
 
 					</div>
 					: 

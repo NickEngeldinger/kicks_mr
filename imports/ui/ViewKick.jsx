@@ -19,6 +19,13 @@ class ViewKick extends Component {
 						<h3>
 							{this.props.kick.category}
 						</h3>
+						<img 
+							src={
+								`http://192.168.101.170:4000/public/img/kicks/
+								${this.props.kick.imageId}.${this.props.kick.imageExt}`
+							}
+							width="200"
+						/>
 					</div>
 				:
 				<p>No Data Yet (Spinny Spinner)</p>

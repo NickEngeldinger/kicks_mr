@@ -1,41 +1,35 @@
-//import { ReactMeteorData } from 'meteor/react-meteor-data';
 import React, { Component } from 'react';
 import { createContainer } from 'meteor/react-meteor-data';
-//import { Meteor } from 'meteor/meteor';
-import IndividualFile from './FileIndividualFile.jsx';
-import { _ } from 'meteor/underscore';
 
 import { Images } from '../api/uploads.js';
 
-//const FileUploadComponent = React.createClass({
-	//mixins: [ReactMeteorData],
-class FileUpload extends Component {
+export default class FileUpload extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			uploading: [],
-			progress: 0,
-			inProgress: false
+			uploading : [],
+			progress : 0,
+			inProgress : false,
+			error : '',
+			status : '',
+			imageId : '',
+			imageExt : ''
 		}
 	
-		//this.handleClick = this.handleClick.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 
-	//getMeteorData() {
-		//var handle = Meteor.subscribe('files.all');
-		//return {
-			//docsReadyYet: handle.ready(),
-			//docs: Images.find().fetch()
-			//docReadyYet: currentDoc,
-			//docs: currentFile
-		//};
-	//}
+	//TODO: GET PROGRESS BAR WORKING
+	//IMPLEMENT UPLOAD COMPONENT AS CHILD OF ADMIN
+	//PASS IMAGE ID TO DB COLLECTION FOR ASSOCIATED KICK
+	//SHOW THUMBNAIL ON UPLOAD
+	//GIVE OPTION TO REMOVE AND DELETE
+	//GIVE OPTION TO ADD MULTIPLE IMAGES
+	//PASS ID AND EXTENSION TO ADMIN SO ITS ACCESSIBLE 
+	//TO NEWKICK COMPONENT AND CAN BE ADDED TO KICK DB ENTRY
 
 	handleChange(event) {
-		'use strict';
 		event.preventDefault();
-
-		let self = this;
 
 		if (event.currentTarget.files && event.currentTarget.files[0]) {
 			var file = event.currentTarget.files[0];
@@ -52,11 +46,10 @@ class FileUpload extends Component {
 					allowWebWorkers: true
 				}, false);
 
-				//TODO fix this when adding progress bar
-				//self.setState({
-				//	uploading: uploadInstance,
-				//	inProgress: true
-				//});
+				this.setState({
+					uploading: uploadInstance,
+					inProgress: true
+				});
 
 				uploadInstance.on('start', () => {
 					console.log('starting')
@@ -65,23 +58,30 @@ class FileUpload extends Component {
 				uploadInstance.on('uploaded', (error, fileObj) => {
 					console.log('uploaded: ', fileObj)
 
-					self.refs['fileInput'].value = '';
+					//THIS SHOULD BE RESET AFTER ADDKICK IS COMPLETE
+					//this.refs['fileInput'].value = '';
 
-					self.setState({
+					this.setState({
 						uploading: [],
 						progress: 0,
-						inProgress: false
+						inProgress: false,
+						status: 'Image upload successful',
+						imageId: fileObj._id,
+						imageExt: fileObj.ext
 					});
+
+					this.props.onImageUpload(this.state.imageId, this.state.imageExt);
 				});
 
 				uploadInstance.on('error', (error, fileObj) => {
-					console.log('Error during upload: ', error)
+					this.setState({error: error});
 				});
 
 				uploadInstance.on('progress', (progress, fileObj) => {
 					console.log('Upload percentage: ', progress);
+					console.log('Uploading: ', this.state.uploading)
 
-					self.setState({
+					this.setState({
 						progress: progress
 					})
 				});
@@ -91,33 +91,10 @@ class FileUpload extends Component {
 		}
 	}
 
-	showUploads() {
-		console.log('******************************', this.state.uploading)
-	}
-
 	render() {
-		if (/*this.data.docsReadyYet*/ true) {
-			'use strict';
-
-			{/*let fileCursors = this.data.docs;
-
-			let display = fileCursors.map((aFile, key) => {
-				console.log('A file: ', aFile.link(), afile.get('name'));
-				//let link = UserFiles.findOne({_id:, aFile._id}).link();
-
-				return <div key={'file', + key}>
-					<IndividualFile
-						fileName={aFile.filename}
-						fileUrl={link}
-						fileId={aFile._id}
-						fileSize={aFile.size}
-					/>
-				</div>
-			});*/}
-
 			return (
 				<div>
-					<p>Upload New File:</p>
+					<p>Upload Kick Image:</p>
 					<input
 						type="file"
 						id="fileInput"
@@ -126,26 +103,23 @@ class FileUpload extends Component {
 						onChange={this.handleChange}
 					/>
 					<hr />
+					<p>Progress: {this.state.progress}%</p>
+					<hr />
 					<div>
-						{this.showUploads()}
+						{ this.state.status }
+						{ this.state.error.reason }
 					</div>
-
-					{/*{display}*/}
-
 				</div>
 			);
-		}
-		else return <div>Docs ready failed :(</div>
 	}
 }
 
-export default createContainer(() => {
-	Meteor.subscribe('Images');
-	return {
+//export default createContainer(() => {
+//	return {
 		//currentDoc: Meteor.subscribe('Images'),
-		currentFile: Images.find().fetch()
-	}
-}, FileUpload);
+//		currentFile: Images.find().fetch()
+//	}
+//}, FileUpload);
 //});
 
 //export default FileUploadComponent;
