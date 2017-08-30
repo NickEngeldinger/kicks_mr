@@ -12,29 +12,36 @@ export default class FileUpload extends Component {
 			inProgress : false,
 			error : '',
 			status : '',
-			imageId : '',
-			imageExt : ''
+			img: {
+				id: '',
+				ext: ''
+			}
 		}
 	
 		this.handleChange = this.handleChange.bind(this);
 	}
 
 	//TODO: GET PROGRESS BAR WORKING
-	//IMPLEMENT UPLOAD COMPONENT AS CHILD OF ADMIN
-	//PASS IMAGE ID TO DB COLLECTION FOR ASSOCIATED KICK
 	//SHOW THUMBNAIL ON UPLOAD
 	//GIVE OPTION TO REMOVE AND DELETE
 	//GIVE OPTION TO ADD MULTIPLE IMAGES
-	//PASS ID AND EXTENSION TO ADMIN SO ITS ACCESSIBLE 
-	//TO NEWKICK COMPONENT AND CAN BE ADDED TO KICK DB ENTRY
+	//CONVERT STATE THAT'S BEING PASSED TO ADMIN
+	//TO OBJECT WITH ASSOCIATED PROPERTIES
+	//IF USER NAVIGATES TO DIFFERENT SECTION
+	//REMOVE UPLOAD FROM DB
 
 	handleChange(event) {
 		event.preventDefault();
 
 		if (event.currentTarget.files && event.currentTarget.files[0]) {
 			var file = event.currentTarget.files[0];
+			
+			//const files = event.currentTarget.files;
+			//console.log(files);
 
 			if (file) {
+				//for multiple files
+				//loop overuploaded files and run insert for each
 				let uploadInstance = Images.insert({
 					file: file,
 					meta: {
@@ -62,15 +69,17 @@ export default class FileUpload extends Component {
 					//this.refs['fileInput'].value = '';
 
 					this.setState({
-						uploading: [],
-						progress: 0,
-						inProgress: false,
-						status: 'Image upload successful',
-						imageId: fileObj._id,
-						imageExt: fileObj.ext
+						uploading : [],
+						progress : 0,
+						inProgress : false,
+						status : 'Image upload successful',
+						img : {
+							id : fileObj._id,
+							ext: fileObj.ext
+						}
 					});
 
-					this.props.onImageUpload(this.state.imageId, this.state.imageExt);
+					this.props.onImageUpload(fileObj._id, fileObj.ext);
 				});
 
 				uploadInstance.on('error', (error, fileObj) => {
@@ -101,6 +110,7 @@ export default class FileUpload extends Component {
 						disabled={this.state.inProgress}
 						ref="fileInput"
 						onChange={this.handleChange}
+						multiple 
 					/>
 					<hr />
 					<p>Progress: {this.state.progress}%</p>
@@ -109,6 +119,10 @@ export default class FileUpload extends Component {
 						{ this.state.status }
 						{ this.state.error.reason }
 					</div>
+					<img src={`http://192.168.101.170:4000/public/img/kicks/
+						${this.state.img.id}.${this.state.img.ext}`} 
+						width="100"
+					/>
 				</div>
 			);
 	}
