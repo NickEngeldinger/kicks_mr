@@ -7,16 +7,20 @@ import SelectKick from './SelectKick.jsx';
 import DeleteKick from './DeleteKick.jsx';
 import EditKick from './EditKick.jsx';
 import FileUpload from './FileUpload.jsx';
+import RemoveImage from './RemoveImage.jsx';
 
 class Admin extends Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			selectedKick: '', 
-			kick: {model: '', colorway: ''},
-			imageId: '',
-			imageExt: ''
+			selectedKick : '', 
+			kick : {
+				model : '', 
+				colorway : ''
+			},
+			imageId : '',
+			imageExt : ''
 		};
 
 		this.handleSelectChange = this.handleSelectChange.bind(this);
@@ -70,6 +74,8 @@ class Admin extends Component {
 							imageId={imageId}
 							onImageUpload={this.handleImageUpload}
 						/>
+
+						<RemoveImage />
 
 					</div>
 					: 

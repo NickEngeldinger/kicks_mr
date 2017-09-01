@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { FilesCollection } from 'meteor/ostrio:files';
+import { check } from 'meteor/check';
 
 export const Images = new FilesCollection({
 	storagePath: '../../../../../../kix_imgs/public/img/kicks',
@@ -22,4 +23,18 @@ if (Meteor.isServer) {
 	Meteor.publish('files.images.all', function imagesPublication() {
 		return Images.find().cursor;
 	});
+
+	Meteor.methods({
+		'image.remove'(id) {
+			check(id, String);
+
+			const file = Images.findOne({_id: id});
+			file.remove(error => {
+				if (error) {
+					console.error('File was not removed');
+				}
+			});
+		}
+	});
 }
+

@@ -126,14 +126,33 @@ export default class FileUpload extends Component {
 				</div>
 			);
 	}
+
+	componentWillUnmount() {
+		//Get last kick in db
+
+		if (this.state.img.id !== lastKickImgId) {
+			//remove image where _id === this.state.img.id
+			//const image = Images.findOne({_id: this.state.img.id})
+			//image.remove(error => {
+			//  if (error) {
+      //    console.error(`File ${this.state.img.id} wasn't removed!`)
+			//  }
+			//});
+			//See if the remove method removes from db and file system
+			//if not delete from file system 
+			//`http://192.168.101.170:4000/public/img/kicks/
+			//${this.state.img.id}.${this.state.img.ext}`
+		}
+
+		//Check uploaded image against kick db
+		//if no associated kick exists then
+		//remove kick from db and delete from file system
+	}
 }
 
-//export default createContainer(() => {
-//	return {
-		//currentDoc: Meteor.subscribe('Images'),
-//		currentFile: Images.find().fetch()
-//	}
-//}, FileUpload);
-//});
-
-//export default FileUploadComponent;
+/*export default createContainer(() => {
+	Meteor.subscribe('files.images.all');
+	return {
+		currentFile: Images.findOne({_id: 'AJ9YgqKGeGA8XXPSx'})
+	}
+}, FileUpload);*/
