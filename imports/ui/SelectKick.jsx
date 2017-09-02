@@ -13,7 +13,9 @@ class SelectKicks extends Component {
 	}
 
 	handleChange(event) {
-		this.props.onSelectChange(event.target.value);
+		let kickId = event.target.value;
+		let imgId =event.target[event.target.selectedIndex].getAttribute('data-img');
+		this.props.onSelectChange(kickId, imgId);
 	}
 
 	renderSelect() {

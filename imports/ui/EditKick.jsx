@@ -18,7 +18,7 @@ class EditKick extends Component {
 		const colorway = ReactDOM.findDOMNode(this.refs.kickColorway).value.trim();
 		const stub = `${model.split(' ').join('-')}-${colorway.split(' ').join('-')}`;
 
-		Meteor.call('kicks.update', this.props.selectedKick, model, colorway, stub);
+		Meteor.call('kicks.update', this.props.selectedKick.id, model, colorway, stub);
 	}
 
 	render () {
@@ -27,13 +27,13 @@ class EditKick extends Component {
 				<div className="container">
 					<form>
 						<input
-							key={this.props.selectedKick}
+							key={this.props.selectedKick.id}
 							defaultValue={this.props.kick.model}
 							ref="kickModel"
 							type="text"
 						/>
 						<input
-							key={this.props.selectedKick + '1'}
+							key={this.props.selectedKick.id + '1'}
 							defaultValue={this.props.kick.colorway}
 							ref="kickColorway"
 							type="text"
@@ -59,6 +59,6 @@ EditKick.propTypes = {
 export default createContainer(props => {
 	const kickSubscription = Meteor.subscribe('kicks');
 	return {
-		kick: Kicks.findOne({_id: props.selectedKick})
+		kick: Kicks.findOne({_id: props.selectedKick.id})
 	}
 }, EditKick);

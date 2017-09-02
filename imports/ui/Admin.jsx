@@ -14,7 +14,10 @@ class Admin extends Component {
 		super(props);
 
 		this.state = {
-			selectedKick : '', 
+			selectedKick : {
+				id : '',
+				imgId : ''
+			}, 
 			kick : {
 				model : '', 
 				colorway : ''
@@ -27,8 +30,15 @@ class Admin extends Component {
 		this.handleImageUpload = this.handleImageUpload.bind(this);
 	}
 
-	handleSelectChange(value) {
-		this.setState({selectedKick: value});
+	handleSelectChange(kickId, imgId) {
+		this.setState({
+			selectedKick : {
+				id : kickId,
+				imgId : imgId
+			}
+		});
+		//get image id associated with kick using value _id 
+
 	}
 
 	handleImageUpload(id, ext) {
@@ -59,7 +69,7 @@ class Admin extends Component {
 
 						<EditKick selectedKick={selectedKick} />
 
-						{ selectedKick !== '' ? 
+						{ selectedKick.id !== '' ? 
 							<DeleteKick selectedKick={selectedKick} kick={kick} />
 							: null
 						}
